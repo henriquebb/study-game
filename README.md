@@ -19,6 +19,12 @@
 
 <hr>
 
+# 🗒 User Stories
+
+- <a href="https://github.com/henrique-droid/study-game/projects/1"> Open here </a>
+
+<hr>
+
 # 🛠 Tech Stack
 
 <p>
