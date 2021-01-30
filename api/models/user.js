@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import Semester from 'semester';
 import Event from 'event';
+import Quest from 'quest';
 
 const { Schema } = mongoose;
 
@@ -14,7 +15,9 @@ const userSchema = new Schema({
         required: true
     },
     semesters: [Semester],
-    events: [Event]
+    events: [Event],
+    quests: [Quest],
+    items: [Item]
 })
 
 const User = mongoose.model('User', userSchema);
