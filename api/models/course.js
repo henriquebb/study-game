@@ -15,7 +15,8 @@ const courseSchema = new Schema({
         hour: Number,
         minute: Number
     },
-    daysOfWeek: [Number]
+    daysOfWeek: [Number],
+    notes: [String]
 });
 
 const Course = mongoose.model('Course', courseSchema);
