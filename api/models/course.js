@@ -6,6 +6,16 @@ const courseSchema = new Schema({
     title: String,
     grade: Number,
     professor: String,
+    className: String,
+    startTime: {
+        hour: Number,
+        minute: Number
+    },
+    endTime: {
+        hour: Number,
+        minute: Number
+    },
+    daysOfWeek: [Number]
 });
 
 const Course = mongoose.model('Course', courseSchema);
