@@ -11,6 +11,11 @@ const itemSchema = new Schema({
         mana: Number,
         exp: Number,
         coins: Number
+    },
+    price: {
+        type: Number,
+        default: 0,
+        required: true
     }
 })
 
