@@ -6,7 +6,8 @@ const { Schema } = mongoose;
 const semesterSchema = new Schema({
     title: String,
     grade: Number,
-    classes: [Course]
+    classes: [Course],
+    notes: [String]
 });
 
 const Semester = mongoose.model('Semester', semesterSchema);
