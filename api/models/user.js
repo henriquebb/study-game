@@ -18,7 +18,7 @@ const userSchema = new Schema({
     events: [Event],
     quests: [Quest],
     items: [Item]
-})
+});
 
 const User = mongoose.model('User', userSchema);
 
