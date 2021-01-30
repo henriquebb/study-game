@@ -11,7 +11,7 @@ class Aulas extends Component {
     constructor(props){
         super(props);
         this.state={
-            semestres:[{title:"2019/2", grade:0, classes:[], class:"botao-semestre"},{title:"2020/1", grade:0, classes:[], class:"botao-semestre"},{title:"2020/2", grade:0, classes:[], class:"botao-semestre"},{title:"2021/1", grade:0, classes:[], class:"botao-semestre"}],
+            semestres:[{title:"2019/2", grade:0, classes:[{title:"Inglês Instrumental 1", grade:90, professor:"Tio Ronaldo"}], class:"botao-semestre"},{title:"2020/1", grade:0, classes:[], class:"botao-semestre"},{title:"2020/2", grade:0, classes:[], class:"botao-semestre"},{title:"2021/1", grade:0, classes:[{title:"Inglês Instrumental 2", grade:10, professor:"Tio Ronaldo"}, {title:"Libras", grade:20, professor:"Dona Clara"}, {title:"Engenharia de Software", grade:0, professor:"Marco"}], class:"botao-semestre"}],
             semestreSelecionado:-1,
             aulas:[],
         };
@@ -21,18 +21,20 @@ class Aulas extends Component {
 
     selecionaSemestre(sID) {
         var sem = this.state.semestres;
+        var au = [];
         for(var ii = 0; ii < sem.length; ii++){
             if(sem[ii].class == "botao-semestre-selecionado"){
                 sem[ii].class = "botao-semestre";
             }
             if(ii == sID){
-                sem[ii].class = "botao-semestre-selecionado"
+                sem[ii].class = "botao-semestre-selecionado";
+                au = sem[ii].classes;
             }
         }
-        console.log(sem);
         this.setState({
             semestreSelecionado:sID,
-            semestres:sem
+            semestres:sem,
+            aulas:au
         });
     }
     
@@ -79,7 +81,8 @@ class Aulas extends Component {
                 </div>
                 <div className="aulas-do-semestre">
                     <h2 className="titulo">Aulas</h2>
-                    {this.state.semestreSelecionado >= 0 && <h5>{this.state.semestres[this.state.semestreSelecionado]}</h5>}
+                    {this.state.semestreSelecionado >= 0 && <h5>Semestre {this.state.semestres[this.state.semestreSelecionado].title}</h5>}
+                    {this.state.semestreSelecionado >= 0 && <h5>Nota Média: {this.state.semestres[this.state.semestreSelecionado].grade}</h5>}
                     {this.state.semestreSelecionado >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona">Adicionar Aula</Button>}
                     {this.state.aulas != [] && this.state.aulas.map((prop, key) => {
                         return (
