@@ -1,5 +1,6 @@
 import logo from '../Assets/logo.png'
 import '../Estilos/geral.css'
+import '../Estilos/aulas.css'
 
 import React, {Component} from 'react';
 import { IconContext } from "react-icons";
