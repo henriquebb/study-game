@@ -50,15 +50,15 @@ class Aulas extends Component {
                 >
             <img className="img-logo" src={logo}/>
             <VscAccount/>
-            <a href="">Perfil</a>
+            <a href="/perfil">Perfil</a>
             <VscEdit/>
-            <a href="">Aulas</a>
+            <a href="/aulas">Aulas</a>
             <VscCalendar/>
-            <a href="">Calendário</a>
+            <a href="/calendario">Calendário</a>
             <RiSwordLine/>
-            <a href="">Missões</a>
+            <a href="/missoes">Missões</a>
             <RiShoppingBag2Line/>
-            <a href="">Loja</a>
+            <a href="/loja">Loja</a>
             </IconContext.Provider>
             </div> {/* Fim Logo + Menu */}
             <div className="header-right"> {/* Início Logout */}
@@ -71,7 +71,7 @@ class Aulas extends Component {
             <div className="tres-telas">
                 <div className="semestres">
                     <h2 className="titulo">Semestres</h2>
-                    <Button type="submit" variant="outline-dark" className="botao-adiciona">Adicionar Semestre</Button>
+                    <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/novo-semestre') }>Adicionar Semestre</Button>
 
                     {this.state.semestres != [] && this.state.semestres.map((prop, key) => {
                         return (
