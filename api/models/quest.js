@@ -12,7 +12,7 @@ const questSchema = new Schema({
         items: [Item],
         exp: Number
     }
-})
+});
 
 const Quest = mongoose.model('Quest', questSchema);
 

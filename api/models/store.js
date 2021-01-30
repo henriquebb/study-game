@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const storeSchema = new Schema({
     items: [Item]
-})
+});
 
 const Store = mongoose.model('Store', storeSchema);
 

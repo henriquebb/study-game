@@ -17,7 +17,7 @@ const itemSchema = new Schema({
         default: 0,
         required: true
     }
-})
+});
 
 const Item = mongoose.model('Item', itemSchema);
 
