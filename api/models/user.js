@@ -14,6 +14,11 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    name : {
+        firstName: String,
+        lastName: String
+    },
+    school: String,
     semesters: [Semester],
     events: [Event],
     quests: [Quest],
