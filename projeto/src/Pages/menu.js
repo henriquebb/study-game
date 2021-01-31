@@ -5,18 +5,16 @@ import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 
 import {
-    UncontrolledCollapse,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    NavbarBrand,
-    Navbar,
-    NavItem,
-    NavLink,
-    Nav,
+    Button,
+    Card,
+    CardBody,
+    CardImg,
+    CardTitle,
+    CardText,   
     Container,
     Row,
-    Col
+    Col,
+    Progress
 } from "reactstrap";
 // core components
 import Sidebar from "../Componentes/Sidebar.js";
@@ -51,41 +49,99 @@ class Menu extends Component {
       />
     
        <div className="main-content">
-       <Container>
-      <Row>
-        <Col>.col</Col>
-      </Row>
-      <Row>
-        <Col>.col</Col>
-        <Col>.col</Col>
-        <Col>.col</Col>
-        <Col>.col</Col>
-      </Row>
-      <Row>
-        <Col xs="3">.col-3</Col>
-        <Col xs="auto">.col-auto - variable width content</Col>
-        <Col xs="3">.col-3</Col>
-      </Row>
-      <Row>
-        <Col xs="6">.col-6</Col>
-        <Col xs="6">.col-6</Col>
-      </Row>
-      <Row>
-        <Col xs="6" sm="4">.col-6 .col-sm-4</Col>
-        <Col xs="6" sm="4">.col-6 .col-sm-4</Col>
-        <Col sm="4">.col-sm-4</Col>
-      </Row>
-      <Row>
-        <Col sm={{ size: 6, order: 2, offset: 1 }}>.col-sm-6 .order-sm-2 .offset-sm-1</Col>
-      </Row>
-      <Row>
-        <Col sm="12" md={{ size: 6, offset: 3 }}>.col-sm-12 .col-md-6 .offset-md-3</Col>
-      </Row>
-      <Row>
-        <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
-        <Col sm={{ size: 'auto', offset: 1 }}>.col-sm-auto .offset-sm-1</Col>
-      </Row>
-    </Container>
+            <Container >
+            <Row>
+                <Col></Col>
+                <Col></Col>
+                <Col></Col>
+                <Col>
+                <Card className="text-right" style={{ width: "65%", borderColor: '#333' }}>
+                    <CardImg
+                        alt="..."
+                        src={require("../Assets/pixel.jpg").default}
+                        top
+                        
+                    />
+                    <CardBody>
+                        <CardText>
+                        <div className="text-center">Xp</div>
+                        <Progress value={50} />
+                        </CardText>
+                    </CardBody>
+                    </Card>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs="3"></Col>
+                <Col xs="auto"></Col>
+                <Col xs="3"></Col>
+            </Row>
+            <Row>
+                <Col xs="6">.</Col>
+                <Col xs="6"></Col>
+            </Row>
+            <Row>
+                
+                <Col xs="6" sm="4">  
+                <div style={{ width: "18rem" }}>
+                    <Card className="card-stats mb-4 mb-lg-0">
+                        <CardBody>
+                        <Row>
+                            <div className="col">
+                            <CardTitle className="text-uppercase text-muted mb-0">
+                                Total traffic
+                            </CardTitle>
+                            <span className="h2 font-weight-bold mb-0">350,897</span>
+                            </div>
+                            <Col className="col-auto">
+                            <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                <i className="ni ni-chart-bar-32" />
+                            </div>
+                            </Col>
+                        </Row>
+                        <p className="mt-3 mb-0 text-muted text-sm">
+                            <span className="text-success mr-2">
+                            <i className="fa fa-arrow-up" />
+                            3.48%
+                            </span>
+                            <span className="text-nowrap">Since last month</span>
+                        </p>
+                        </CardBody>
+                    </Card>
+                </div>
+                </Col>
+                
+                <Col xs="6" sm="4"> <div style={{ width: "18rem" }}>
+                    <Card className="card-stats mb-4 mb-lg-0">
+                        <CardBody>
+                        <Row>
+                            <div className="col">
+                            <CardTitle className="text-uppercase text-muted mb-0">
+                                Total traffic
+                            </CardTitle>
+                            <span className="h2 font-weight-bold mb-0">350,897</span>
+                            </div>
+                            <Col className="col-auto">
+                            <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                <i className="ni ni-chart-bar-32" />
+                            </div>
+                            </Col>
+                        </Row>
+                        <p className="mt-3 mb-0 text-muted text-sm">
+                            <span className="text-success mr-2">
+                            <i className="fa fa-arrow-up" />
+                            3.48%
+                            </span>
+                            <span className="text-nowrap">Since last month</span>
+                        </p>
+                        </CardBody>
+                    </Card>
+                </div></Col>
+                
+                
+                <Col sm="4"></Col>
+            </Row>
+            </Container>
       </div>
     
     
