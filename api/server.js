@@ -9,7 +9,13 @@ const server = express();
 
 server.use(bodyParser.json());
 
-mongoose.connect(`mongodb://${process.env.DIR}/study-game`, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(`mongodb://${process.env.DIR}/study-game`, 
+{
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useCreateIndex: true, 
+    useFindAndModify: false 
+});
 
 server.use("/api/v1/", routes);
 
