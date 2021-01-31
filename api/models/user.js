@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
-import Semester from 'semester';
-import Event from 'event';
-import Quest from 'quest';
+import { semesterSchema } from './semester.js';
+import { eventSchema } from './event.js';
+import { questSchema } from './quest.js';
+import { itemSchema } from './item.js';
 
 const { Schema } = mongoose;
 
@@ -20,10 +21,10 @@ const userSchema = new Schema({
         lastName: String
     },
     school: String,
-    semesters: [Semester],
-    events: [Event],
-    quests: [Quest],
-    items: [Item]
+    semesters: [semesterSchema],
+    events: [eventSchema],
+    quests: [questSchema],
+    items: [itemSchema]
 });
 
 const User = mongoose.model('User', userSchema);

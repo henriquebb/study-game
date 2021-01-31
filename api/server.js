@@ -1,14 +1,17 @@
 import dotenv from 'dotenv';
 import express from "express";
-import homeRoute from "./routes/home.js";
+import routes from "./routes/routes.js";
 import mongoose from "mongoose";
+import bodyParser from 'body-parser';
 
 dotenv.config();
 const server = express();
 
-mongoose.connect(`mongodb://${process.env.DIR}/study-game`, {useNewUrlParser: true, useUnifiedTopology: true});
+server.use(bodyParser.json());
 
-server.use("/", homeRoute);
+mongoose.connect(`mongodb://${process.env.DIR}/study-game`, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+
+server.use("/api/v1/", routes);
 
 server.listen(process.env.PORT || 3000, function() {
     console.log(`Server started on port ${process.env.PORT || 3000}`);
