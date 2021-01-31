@@ -11,7 +11,7 @@ const createUser = (req, res) => {
           events: [],
           quests: [],
           items: []
-        })
+        });
     User.findOne({ username: req.body.username }, (err, currentUser) => {
         if (err) {
             res.status(500).json();

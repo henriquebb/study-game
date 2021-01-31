@@ -5,7 +5,10 @@ const { Schema } = mongoose;
 
 const semesterSchema = new Schema({
     title: String,
-    grade: Number,
+    grade: {
+        type: Number,
+        default: 0
+    },
     classes: [courseSchema],
     notes: [String]
 });
