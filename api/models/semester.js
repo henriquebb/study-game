@@ -9,8 +9,15 @@ const semesterSchema = new Schema({
         type: Number,
         default: 0
     },
-    classes: [courseSchema],
-    notes: [String]
+    classes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
+    notes: [String],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 const Semester = mongoose.model('Semester', semesterSchema);

@@ -9,7 +9,10 @@ const questSchema = new Schema({
     status: Boolean,
     rewards: { 
         coins: Number,
-        items: [itemSchema],
+        items: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Item'
+        }],
         exp: Number
     }
 });

@@ -4,7 +4,10 @@ import { itemSchema } from './item.js';
 const { Schema } = mongoose;
 
 const storeSchema = new Schema({
-    items: [itemSchema]
+    items: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }]
 });
 
 const Store = mongoose.model('Store', storeSchema);
