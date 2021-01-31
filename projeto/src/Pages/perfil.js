@@ -29,6 +29,12 @@ class Perfil extends Component {
         if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
             this.props.history.push('/');
         }
+
+        this.handleEditaPerfil = this.handleEditaPerfil.bind(this);
+    }
+
+    handleEditaPerfil(){
+        this.props.history.push('/edita-perfil', this.state);
     }
 
     render(){
@@ -65,7 +71,7 @@ class Perfil extends Component {
                     <h6>Nome: {this.state.name.firstName} {this.state.name.lastName}</h6>
                     <h6>Email: {this.state.email}</h6>
                     <h6>Escola: {this.state.school}</h6>
-                    <Button type="submit" variant="outline-dark">Editar Perfil</Button>
+                    <Button type="submit" variant="outline-dark" onClick={this.handleEditaPerfil}>Editar Perfil</Button>
                     <br/>
                     <hr/>
                     <br/>
