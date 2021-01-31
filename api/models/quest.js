@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Item } from 'item';
+import { itemSchema } from './item.js';
 
 const { Schema } = mongoose;
 
@@ -9,11 +9,11 @@ const questSchema = new Schema({
     status: Boolean,
     rewards: { 
         coins: Number,
-        items: [Item],
+        items: [itemSchema],
         exp: Number
     }
 });
 
 const Quest = mongoose.model('Quest', questSchema);
 
-export default Quest;
+export { Quest, questSchema };

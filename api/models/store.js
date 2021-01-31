@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import Item from 'item';
+import { itemSchema } from './item.js';
 
 const { Schema } = mongoose;
 
 const storeSchema = new Schema({
-    items: [Item]
+    items: [itemSchema]
 });
 
 const Store = mongoose.model('Store', storeSchema);
