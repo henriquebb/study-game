@@ -144,6 +144,7 @@ class Aulas extends Component {
                     {this.state.semestreSelecionado >= 0 && <h5>Semestre {this.state.semestres[this.state.semestreSelecionado].title} <BiEdit onClick={() => this.props.history.push('/edita-semestre', this.state.semestres[this.state.semestreSelecionado].title) }/></h5>}
                     {this.state.semestreSelecionado >= 0 && <h5>Nota Média: {this.state.semestres[this.state.semestreSelecionado].grade}</h5>}
                     {this.state.semestreSelecionado >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/nova-aula') }>Adicionar Aula</Button>}
+                    {this.state.semestreSelecionado >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/notas-semestre') }>Anotações do Semestre</Button>}
                     {this.state.aulas != [] && this.state.aulas.map((prop, key) => {
                         return (
                             <div><h5 className={prop.class} onClick={() => this.selecionaAula(key)}>{prop.title}</h5> <AiFillDelete onClick={() => this.deletaAula(key)}/></div>
@@ -157,7 +158,7 @@ class Aulas extends Component {
                     {this.state.aulaSelecionada >= 0 && <h5>Nota: {this.state.aulas[this.state.aulaSelecionada].grade}</h5>}
                     {this.state.aulaSelecionada >= 0 && <h5>Horário: {this.state.aulas[this.state.aulaSelecionada].startTime.hour}:{this.state.aulas[this.state.aulaSelecionada].startTime.minute} - {this.state.aulas[this.state.aulaSelecionada].endTime.hour}:{this.state.aulas[this.state.aulaSelecionada].endTime.minute}</h5>}
                     {this.state.aulaSelecionada >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/editar-aula') }>Editar</Button>}
-                    {this.state.aulaSelecionada >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/notas-aula') }>Notas</Button>}
+                    {this.state.aulaSelecionada >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/notas-aula') }>Anotações da Disciplina</Button>}
                 </div>
             </div>
         </div>
