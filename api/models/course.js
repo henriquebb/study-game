@@ -16,7 +16,11 @@ const courseSchema = new Schema({
         minute: Number
     },
     daysOfWeek: [Number],
-    notes: [String]
+    notes: [String],
+    semester: {
+        type: Schema.Types.ObjectId,
+        ref: 'Semester'
+    }
 });
 
 const Course = mongoose.model('Course', courseSchema);

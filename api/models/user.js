@@ -21,10 +21,22 @@ const userSchema = new Schema({
         lastName: String
     },
     school: String,
-    semesters: [semesterSchema],
-    events: [eventSchema],
-    quests: [questSchema],
-    items: [itemSchema]
+    semesters: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Semester'
+    }],
+    events: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
+    }],
+    quests: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Quest'
+    }],
+    items: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }]
 });
 
 const User = mongoose.model('User', userSchema);
