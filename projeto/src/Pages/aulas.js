@@ -4,7 +4,9 @@ import '../Estilos/aulas.css'
 
 import React, {Component} from 'react';
 import { IconContext } from "react-icons";
+import { BiEdit } from "react-icons/bi";
 import { VscAccount, VscCalendar, VscEdit } from "react-icons/vsc";
+import { AiFillDelete } from "react-icons/ai";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
 import Button from 'react-bootstrap/Button';
 
@@ -12,12 +14,47 @@ class Aulas extends Component {
     constructor(props){
         super(props);
         this.state={
-            semestres:[{title:"2019/2", grade:0, classes:[{title:"Inglês Instrumental 1", grade:90, professor:"Tio Ronaldo"}], class:"botao-semestre"},{title:"2020/1", grade:0, classes:[], class:"botao-semestre"},{title:"2020/2", grade:0, classes:[], class:"botao-semestre"},{title:"2021/1", grade:0, classes:[{title:"Inglês Instrumental 2", grade:10, professor:"Tio Ronaldo"}, {title:"Libras", grade:20, professor:"Dona Clara"}, {title:"Engenharia de Software", grade:0, professor:"Marco"}], class:"botao-semestre"}],
+            semestres:[{title:"2019/2", grade:0, classes:[{title:"Inglês Instrumental 1", grade:90, professor:"Tio Ronaldo", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}], class:"botao-semestre"},{title:"2020/1", grade:0, classes:[], class:"botao-semestre"},{title:"2020/2", grade:0, classes:[], class:"botao-semestre"},{title:"2021/1", grade:0, classes:[{title:"Inglês Instrumental 2", grade:10, professor:"Tio Ronaldo", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}, {title:"Libras", grade:20, professor:"Dona Clara", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}, {title:"Engenharia de Software", grade:0, professor:"Marco", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}], class:"botao-semestre"}],
             semestreSelecionado:-1,
             aulas:[],
+            aulaSelecionada:-1
         };
 
         this.selecionaSemestre = this.selecionaSemestre.bind(this);
+        this.selecionaAula = this.selecionaAula.bind(this);
+        this.deletaAula = this.deletaAula.bind(this);
+
+    }
+
+    deletaSemestre(sID){
+        const seme = this.state.semestres;
+        var s = [];
+        for(var ii = 0; ii < seme.length; ii++){
+            if(ii != sID){
+                s.push(seme[ii]);
+            }
+        }
+        this.setState({
+            semestreSelecionado:-1,
+            semestres:s
+        })
+    }
+
+    deletaAula(aID){
+        const aulas = this.state.aulas;
+        var seme = this.state.semestres;
+        var au = [];
+        for(var ii = 0; ii < aulas.length; ii++){
+            if(ii != aID){
+                au.push(aulas[ii]);
+            }
+        }
+        seme[this.state.semestreSelecionado].classes = au;
+        this.setState({
+            aulaSelecionada:-1,
+            aulas: au,
+            semestres:seme
+        })
     }
 
     selecionaSemestre(sID) {
@@ -32,9 +69,31 @@ class Aulas extends Component {
                 au = sem[ii].classes;
             }
         }
+        for(var ii = 0; ii < au.length; ii++){
+            if(au[ii].class == "botao-semestre-selecionado"){
+                au[ii].class = "botao-semestre";
+            }
+        }
         this.setState({
             semestreSelecionado:sID,
             semestres:sem,
+            aulas:au,
+            aulaSelecionada:-1
+        });
+    }
+
+    selecionaAula(aID){
+        var au = this.state.aulas;
+        for(var ii = 0; ii < au.length; ii++){
+            if(au[ii].class == "botao-semestre-selecionado"){
+                au[ii].class = "botao-semestre";
+            }
+            if(ii == aID){
+                au[ii].class = "botao-semestre-selecionado";
+            }
+        }
+        this.setState({
+            aulaSelecionada:aID,
             aulas:au
         });
     }
@@ -75,24 +134,30 @@ class Aulas extends Component {
 
                     {this.state.semestres != [] && this.state.semestres.map((prop, key) => {
                         return (
-                            <h5 className={prop.class} onClick={() => this.selecionaSemestre(key)}>{prop.title}</h5>
+                            <div><h5 className={prop.class} onClick={() => this.selecionaSemestre(key)}>{prop.title}</h5> <AiFillDelete onClick={() => this.deletaSemestre(key)}/></div>
                         );
                     })}
 
                 </div>
                 <div className="aulas-do-semestre">
-                    <h2 className="titulo">Aulas</h2>
-                    {this.state.semestreSelecionado >= 0 && <h5>Semestre {this.state.semestres[this.state.semestreSelecionado].title}</h5>}
+                    <h2 className="titulo">Disciplinas</h2>
+                    {this.state.semestreSelecionado >= 0 && <h5>Semestre {this.state.semestres[this.state.semestreSelecionado].title} <BiEdit onClick={() => this.props.history.push('/edita-semestre', this.state.semestres[this.state.semestreSelecionado].title) }/></h5>}
                     {this.state.semestreSelecionado >= 0 && <h5>Nota Média: {this.state.semestres[this.state.semestreSelecionado].grade}</h5>}
-                    {this.state.semestreSelecionado >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona">Adicionar Aula</Button>}
+                    {this.state.semestreSelecionado >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/nova-aula') }>Adicionar Aula</Button>}
                     {this.state.aulas != [] && this.state.aulas.map((prop, key) => {
                         return (
-                            <h5 className="botao-semestre">{prop.title}</h5>
+                            <div><h5 className={prop.class} onClick={() => this.selecionaAula(key)}>{prop.title}</h5> <AiFillDelete onClick={() => this.deletaAula(key)}/></div>
                         );
                     })}
                 </div>
                 <div className="aula">
-                    <h2 className="titulo">Aula</h2>
+                    <h2 className="titulo">Disciplina</h2>
+                    {this.state.aulaSelecionada >= 0 && <h5>{this.state.aulas[this.state.aulaSelecionada].title}</h5>}
+                    {this.state.aulaSelecionada >= 0 && <h5>Professor: {this.state.aulas[this.state.aulaSelecionada].professor}</h5>}
+                    {this.state.aulaSelecionada >= 0 && <h5>Nota: {this.state.aulas[this.state.aulaSelecionada].grade}</h5>}
+                    {this.state.aulaSelecionada >= 0 && <h5>Horário: {this.state.aulas[this.state.aulaSelecionada].startTime.hour}:{this.state.aulas[this.state.aulaSelecionada].startTime.minute} - {this.state.aulas[this.state.aulaSelecionada].endTime.hour}:{this.state.aulas[this.state.aulaSelecionada].endTime.minute}</h5>}
+                    {this.state.aulaSelecionada >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/editar-aula') }>Editar</Button>}
+                    {this.state.aulaSelecionada >= 0 && <Button type="submit" variant="outline-dark" className="botao-adiciona" onClick={() => this.props.history.push('/notas-aula') }>Notas</Button>}
                 </div>
             </div>
         </div>
