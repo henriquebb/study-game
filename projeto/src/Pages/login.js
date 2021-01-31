@@ -1,5 +1,6 @@
 import logo from '../Assets/logo.png'
 import React, {Component} from 'react';
+import {login,isLoged, logout} from '../Services/authentication.js'
 
 class Login extends Component {
     constructor(props){
@@ -7,6 +8,10 @@ class Login extends Component {
         this.state={
             username:"",
             passowrd:""
+        }
+
+        if(isLoged()){
+            logout();
         }
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -27,6 +32,7 @@ class Login extends Component {
         //Checar no banco de dados se usuário e senha estão cadastrados
 
         //Redirecionar para o perfil, logado
+        login(this.username);
         this.props.history.push('/perfil');
     }
 

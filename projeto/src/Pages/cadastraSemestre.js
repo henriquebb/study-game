@@ -6,12 +6,18 @@ import { IconContext } from "react-icons";
 import { VscAccount, VscCalendar, VscEdit } from "react-icons/vsc";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
 
+import {isLoged} from '../Services/authentication.js'
+
 class CadastraSemestre extends Component {
     constructor(props){
         super(props);
         this.state={
             nome:""
         };
+
+        if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
+            this.props.history.push('/');
+        }
 
         this.handleNameChange = this.handleNameChange.bind(this);
     }
@@ -44,7 +50,7 @@ class CadastraSemestre extends Component {
                 </div> {/* Fim Logo + Menu */}
                     <div className="header-right"> {/* Início Logout */}
                         <RiLogoutCircleRLine/>
-                        <a href="">Logout</a>
+                        <a href="/">Logout</a>
                     </div> {/* Fim Logout */}
                 </div> {/* Fim do Cabeçalho */}
 

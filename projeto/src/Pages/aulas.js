@@ -10,6 +10,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
 import Button from 'react-bootstrap/Button';
 
+import {isLoged} from '../Services/authentication.js'
+
 class Aulas extends Component {
     constructor(props){
         super(props);
@@ -19,6 +21,10 @@ class Aulas extends Component {
             aulas:[],
             aulaSelecionada:-1
         };
+
+        if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
+            this.props.history.push('/');
+        }
 
         this.selecionaSemestre = this.selecionaSemestre.bind(this);
         this.selecionaAula = this.selecionaAula.bind(this);
@@ -122,7 +128,7 @@ class Aulas extends Component {
             </div> {/* Fim Logo + Menu */}
             <div className="header-right"> {/* Início Logout */}
                 <RiLogoutCircleRLine/>
-                <a href="">Logout</a>
+                <a href="/">Logout</a>
             </div> {/* Fim Logout */}
             </div> {/* Fim do Cabeçalho */}
 
