@@ -52,4 +52,15 @@ const addNoteToCourse = (req, res) => {
     });
 };
 
-export { addNoteToCourse, createCourse };
+const getCourse = (req, res) => {
+    Course.findById(req.params.id, (err, course) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.send(course).json();
+            res.status(200).json();
+        }
+    });
+};
+
+export { addNoteToCourse, createCourse, getCourse };
