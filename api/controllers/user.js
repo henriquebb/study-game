@@ -76,4 +76,19 @@ const editUser = (req, res) => {
     });
 };
 
-export { createUser, addItemToUser, getUser, editUser };
+const loginUser = (req, res) => {
+    User.findOne({ username: req.body.username }, (err, user) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            if (user.password != req.body.password) {
+                res.status(401).json();
+            } else {
+                res.send(user.id).json();
+                res.status(200).json();
+            }
+        }
+    });
+}
+
+export { createUser, addItemToUser, getUser, editUser, loginUser };
