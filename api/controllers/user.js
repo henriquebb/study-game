@@ -55,4 +55,15 @@ const addItemToUser = (req, res) => {
     });
 };
 
-export { createUser, addItemToUser };
+const getUser = (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.send(user).json();
+            res.status(200).json();
+        }
+    });
+};
+
+export { createUser, addItemToUser, getUser };
