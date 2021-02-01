@@ -16,4 +16,21 @@ const createSemester = (req, res) => {
     });
 };
 
-export { createSemester };
+const addNoteToSemester = (req, res) => {
+    Semester.findById(req.params.id, (err, semester) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            semester.notes.push(req.body.note);
+            semester.save((err) => {
+                if (err) {
+                    res.status(404).json();
+                } else {
+                    res.status(200).json();
+                }
+            })
+        }
+    });
+};
+
+export { createSemester, addNoteToSemester };
