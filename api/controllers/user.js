@@ -1,4 +1,5 @@
 import User from '../models/user.js';
+import { Item } from '../models/item.js';
 
 const createUser = (req, res) => {
     const user = new User(
@@ -31,4 +32,27 @@ const createUser = (req, res) => {
     });
 };
 
-export { createUser };
+const addItemToUser = (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            Item.findById(req.query.id, (err, item) => {
+                if (err) {
+                    res.status(404).json();
+                } else {
+                    user.items.push(item);
+                    user.save((err) => {
+                        if (err) {
+                            res.status(404).json();
+                        } else {
+                            res.status(200).json();
+                        }
+                    });
+                }
+            });
+        }
+    });
+};
+
+export { createUser, addItemToUser };

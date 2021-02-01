@@ -1,7 +1,8 @@
 import Router from 'express';
-import { createUser } from '../controllers/user.js';
+import { createUser, addItemToUser } from '../controllers/user.js';
 
 const userRoute = Router();
 userRoute.post("/users", createUser);
+userRoute.patch("/users/:id/add-item", addItemToUser);
 
 export default userRoute;
