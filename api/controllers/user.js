@@ -66,4 +66,14 @@ const getUser = (req, res) => {
     });
 };
 
-export { createUser, addItemToUser, getUser };
+const editUser = (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, (err) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.status(200).json();
+        }
+    });
+};
+
+export { createUser, addItemToUser, getUser, editUser };
