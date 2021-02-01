@@ -6,7 +6,11 @@ const { Schema } = mongoose;
 const questSchema = new Schema({
     title: String,
     body: String,
-    status: Boolean,
+    status: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
     rewards: { 
         coins: Number,
         items: [{
