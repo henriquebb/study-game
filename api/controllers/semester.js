@@ -24,7 +24,7 @@ const addNoteToSemester = (req, res) => {
             semester.notes.push(req.body.note);
             semester.save((err) => {
                 if (err) {
-                    res.status(404).json();
+                    res.status(500).json();
                 } else {
                     res.status(200).json();
                 }
