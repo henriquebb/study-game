@@ -43,4 +43,15 @@ const createEvent = (req, res) => {
     });
 };
 
-export { editEvent, createEvent };
+const getEvent = (req, res) => {
+    Event.findById(req.params.id, (err, event) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.send(event).json();
+            res.status(200).json();
+        }
+    });
+};
+
+export { editEvent, createEvent, getEvent };
