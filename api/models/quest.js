@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { itemSchema } from './item.js';
 
 const { Schema } = mongoose;
 
