@@ -91,4 +91,14 @@ const loginUser = (req, res) => {
     });
 }
 
-export { createUser, addItemToUser, getUser, editUser, loginUser };
+const changeCoins = (req, res) => {
+    User.findByIdAndUpdate(req.params.id, { $set: { "stats.coins": req.body.coins } }, (err) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.status(200).json();
+        }
+    });
+}
+
+export { createUser, addItemToUser, getUser, editUser, loginUser, changeCoins };
