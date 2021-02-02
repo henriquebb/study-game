@@ -40,4 +40,22 @@ const createQuest = (req, res) => {
     });
 };
 
-export { changeStatus, getQuest, createQuest };
+const addItemsToQuest = (req, res) => {
+    const items = req.body.items;
+    Quest.findById(req.params.id, (err, quest) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            quest.rewards.items = items;
+            quest.save((err) => {
+                if (err) {
+                    res.status(404).json();
+                } else {
+                    res.status(200).json();
+                }
+            });
+        }
+    });
+};
+
+export { changeStatus, getQuest, createQuest, addItemsToQuest };
