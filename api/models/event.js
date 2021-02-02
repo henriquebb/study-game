@@ -4,8 +4,9 @@ const { Schema } = mongoose;
 
 const eventSchema = new Schema({
     title: String,
-    body: String,
+    content: String,
     date: Date,
+    grade: Number,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
