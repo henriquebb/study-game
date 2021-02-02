@@ -21,4 +21,23 @@ const getQuest = (req, res) => {
     });
 };
 
-export { changeStatus, getQuest };
+const createQuest = (req, res) => {
+    const quest = new Quest({
+        title: req.body.title,
+        content: req.body.content,
+        level: req.body.level,
+        status: req.body.status,
+        "rewards.coins": req.body.rewards.coins,
+        "rewards.exp": req.body.rewards.exp
+    });
+
+    quest.save((err) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.status(200).json();
+        }
+    });
+};
+
+export { changeStatus, getQuest, createQuest };

@@ -5,7 +5,8 @@ const { Schema } = mongoose;
 
 const questSchema = new Schema({
     title: String,
-    body: String,
+    content: String,
+    level: Number,
     status: {
         type: Boolean,
         default: false,
