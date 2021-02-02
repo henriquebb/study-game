@@ -11,7 +11,8 @@ const createUser = (req, res) => {
           semesters: [],
           events: [],
           quests: [],
-          items: []
+          items: [],
+          image: req.body.image
         });
     User.findOne({ username: req.body.username }, (err, currentUser) => {
         if (err) {
