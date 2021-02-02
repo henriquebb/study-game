@@ -58,7 +58,8 @@ const userSchema = new Schema({
             required: true,
             default: 0
         }
-    }
+    },
+    image: { data: Buffer, contentType: String }
 });
 
 const User = mongoose.model('User', userSchema);
