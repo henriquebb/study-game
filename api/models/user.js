@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-import { semesterSchema } from './semester.js';
-import { eventSchema } from './event.js';
-import { questSchema } from './quest.js';
-import { itemSchema } from './item.js';
+import encrypt from 'mongoose-encryption';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const { Schema } = mongoose;
 
@@ -62,6 +61,9 @@ const userSchema = new Schema({
     image: { data: Buffer, contentType: String }
 });
 
+userSchema.plugin(encrypt, { 
+    secret: process.env.SECRET, 
+    encryptedFields: ['password'] });
 const User = mongoose.model('User', userSchema);
 
 export default User;

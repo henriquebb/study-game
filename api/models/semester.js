@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { courseSchema } from './course.js';
 
 const { Schema } = mongoose;
 
