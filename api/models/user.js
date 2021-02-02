@@ -36,7 +36,29 @@ const userSchema = new Schema({
     items: [{
         type: Schema.Types.ObjectId,
         ref: 'Item'
-    }]
+    }],
+    stats: {
+        hp: {
+            type: Number,
+            required: true,
+            default: 100
+        },
+        mana: {
+            type: Number,
+            required: true,
+            default: 100
+        },
+        exp: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        coins: {
+            type: Number,
+            required: true,
+            default: 0
+        }
+    }
 });
 
 const User = mongoose.model('User', userSchema);
