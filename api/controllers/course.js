@@ -63,4 +63,14 @@ const getCourse = (req, res) => {
     });
 };
 
-export { addNoteToCourse, createCourse, getCourse };
+const editCourse = (req, res) => {
+    Course.findByIdAndUpdate(req.params.id, req.body, (err) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.status(200).json();
+        }
+    });
+};
+
+export { addNoteToCourse, createCourse, getCourse, editCourse };
