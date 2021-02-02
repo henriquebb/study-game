@@ -59,4 +59,15 @@ const editSemester = (req, res) => {
     });
 }
 
-export { createSemester, addNoteToSemester, editSemester };
+const getSemester = (req, res) => {
+    Semester.findById(req.params.id, (err, semester) => {
+        if (err) {
+            res.status(404).json();
+        } else {
+            res.send(semester).json();
+            res.status(200).json();
+        }
+    });
+};
+
+export { createSemester, addNoteToSemester, editSemester, getSemester };
