@@ -1,17 +1,33 @@
 import { Semester } from '../models/semester.js';
+import User from '../models/user.js';
 
 const createSemester = (req, res) => {
     const semester = new Semester({
         title: req.body.title,
         grade: req.body.grade,
-        classes: req.body.classes,
         notes: req.body.notes
     });
-    Semester.create(semester, (err) => {
+    User.findById(req.query.id, (err, user) => {
         if (err) {
-            res.status(500).json();
+            res.status(404).json();
         } else {
-            res.status(200).json();
+            semester.user = user;
+            semester.save((err, semester) => {
+                if (err) {
+                    console.log(err);
+                    res.status(404).json();
+                } else {
+                    user.semesters.push(semester);
+                    user.save((err) => {
+                        if (err) {
+                            console.log(err);
+                            res.status(404).json();
+                        } else {
+                            res.status(200).json();
+                        }
+                    });
+                }
+            });
         }
     });
 };
