@@ -28,11 +28,11 @@ import {
 } from "reactstrap";
 
 import {isLoged, whosLoged2} from '../Services/authentication.js'
-//import api from '../Services/api.js'
+import api from '../Services/api.js'
 
 async function getUserFromDB(uID){
-    //const response = await api.get('/users/' + uID);
-    //return response.data;
+    const response = await api.get('/users/' + uID);
+    return response.data;
 }
 
 class Perfil extends Component {
@@ -52,7 +52,7 @@ class Perfil extends Component {
         }
 
         if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
-           // this.props.history.push('/');
+            this.props.history.push('/');
         }
 
         this.handleEditaPerfil = this.handleEditaPerfil.bind(this);
@@ -69,10 +69,7 @@ class Perfil extends Component {
         return (
         <>
             <Sidebar
-            //{...props}
-            //routes={routes}
             logo={{
-              innerLink: "/admin/index",
               imgSrc: require("../Assets/logo.png").default,
               imgAlt: "...",
             }}
@@ -139,8 +136,9 @@ class Perfil extends Component {
                             </div>
                         </div>
                         <div class="order-xl-1 col-xl-8">
-                            <div class="bg-secondary shadow card">
-                                <div class="bg-white border-0 card-header">
+                            <div class="bg-secondary shadow card">  
+                                    <Form class="">
+                                    <div class="bg-white border-0 card-header">
                                     <div class="align-items-center row">
                                         <div class="col-8">
                                             <h3 class="mb-0">Minha Conta</h3>
@@ -151,20 +149,19 @@ class Perfil extends Component {
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <Form class="">
                                         <h6 class="heading-small text-muted mb-4">Informação do Usuário</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-username">Username</label>
-                                                        <input id="input-username" placeholder="Username" type="text" class="form-control-alternative form-control" value={this.state.username}/  >
+                                                        <input id="input-username" disabled placeholder="Username" type="text" class="form-control-alternative form-control" value={this.state.username}/  >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-email">E-mail</label>
-                                                        <input id="input-email" placeholder="jesse@example.com" type="email" class="form-control-alternative form-control" value={this.state.email}/>
+                                                        <input id="input-email" disabled  placeholder="jesse@example.com" type="email" class="form-control-alternative form-control" value={this.state.email}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,19 +169,20 @@ class Perfil extends Component {
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-first-name">First name</label>
-                                                        <input id="input-first-name" placeholder="First name" type="text" class="form-control-alternative form-control" value={this.state.name.firstName}/>
+                                                        <input id="input-first-name" disabled  placeholder="First name" type="text" class="form-control-alternative form-control" value={this.state.name.firstName}/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-last-name">Last name</label>
-                                                        <input id="input-last-name" placeholder="Last name" type="text" class="form-control-alternative form-control" value={this.state.name.lastName}/>
+                                                        <input id="input-last-name" disabled  placeholder="Last name" type="text" class="form-control-alternative form-control" value={this.state.name.lastName}/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </Form>
-                                </div>
+                                   
+                                     </div>
+                                </Form> 
                             </div>
                         </div>
                     </div>
@@ -196,5 +194,4 @@ class Perfil extends Component {
     }
 
 }
-
 export default Perfil;

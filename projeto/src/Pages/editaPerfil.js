@@ -1,5 +1,6 @@
 import '../Estilos/geral.css'
 import logo from '../Assets/logo.png'
+import avatar from '../Assets/no-avatar.png'
 
 import React, {Component} from 'react';
 import { IconContext } from "react-icons";
@@ -7,8 +8,27 @@ import { VscAccount, VscCalendar, VscEdit } from "react-icons/vsc";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
 
 import {isLoged, whosLoged2} from '../Services/authentication.js'
-
+import Sidebar from "../Componentes/Sidebar.js";
 import api from '../Services/api.js'
+import {
+    Button,
+    Row,
+    Col,
+    Badge,
+    Container,
+    PopoverBody,
+    UncontrolledPopover,
+    Card, CardImg, CardTitle, CardText, CardGroup,
+    CardSubtitle, CardBody,
+    CardHeader,
+    FormGroup,
+    Form,
+    Input,
+    InputGroupAddon,
+    InputGroupText,
+    InputGroup,
+    Modal, Table 
+} from "reactstrap";
 
 async function editProfile(jsonPatch){
     const response = await api.patch('/users/' + whosLoged2(), jsonPatch);
@@ -74,48 +94,13 @@ class EditarPerfil extends Component {
 
     render(){
         return (
+            <>
             <div className="pagina">
-                <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-                <div className="cabecalho"> {/* Começo do Cabeçalho */}
-                    <div className="menu1"> {/* Início Logo + Menu */}
-                    <IconContext.Provider
-                        value={{ color: 'black', height: '40%' }}
-                        >
-                    <img className="img-logo" src={logo}/>
-                    <VscAccount/>
-                    <a href="/perfil">Perfil</a>
-                    <VscEdit/>
-                    <a href="/aulas">Aulas</a>
-                    <VscCalendar/>
-                    <a href="/calendario">Calendário</a>
-                    <RiSwordLine/>
-                    <a href="/missoes">Missões</a>
-                    <RiShoppingBag2Line/>
-                    <a href="/loja">Loja</a>
-                    </IconContext.Provider>
-                </div> {/* Fim Logo + Menu */}
-                    <div className="header-right"> {/* Início Logout */}
-                        <RiLogoutCircleRLine/>
-                        <a href="/">Logout</a>
-                    </div> {/* Fim Logout */}
-                </div> {/* Fim do Cabeçalho */}
-
                 <div>
                     <h4>Editar Perfil</h4>
                     <form onSubmit={this.handleSubmit}>
                     <label>
-                    Nome de Usuário (Login):
-                        <input type="text" defaultValue={this.state.username} onChange={this.handleUsernameChange}  /><br/>
-                        Senha:
-                        <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}  /><br/>
-                        Nome:
-                        <input type="text" defaultValue={this.state.name.firstName} onChange={this.handleFirstNameChange}  /><br/>
-                        Sobrenome:
-                        <input type="text" defaultValue={this.state.name.lastName} onChange={this.handleLasttNameChange}  /><br/>
-                        Email:
-                        <input type="text" defaultValue={this.state.email} onChange={this.handleEmailChange}  /><br/>
-                        Escola:
-                        <input type="text" defaultValue={this.state.school} onChange={this.handleSchoolChange}  /><br/>
+    
                         <input type="submit" value="Salvar" />
                         </label>
                     </form>
@@ -123,6 +108,164 @@ class EditarPerfil extends Component {
                     
                 </div>
             </div>
+            <Sidebar
+            logo={{
+              imgSrc: require("../Assets/logo.png").default,
+              imgAlt: "...",
+            }}
+          />
+
+        <div className="main-content">
+            <div className="pagina">
+                <div>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                   <br></br>
+                </div>
+                <div class="mt--7 container-fluid">
+                    <div class="row">
+                        <div class="order-xl-2 mb-5 mb-xl-0 col-xl-4">
+                            <div class="card-profile shadow card">
+                                <div class="justify-content-center row">
+                                    <div class="order-lg-2 col-lg-3">
+                                        <div class="card-profile-image">
+                                            <img alt="..." class="rounded-circle" src={avatar} />
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4 card-header">
+                                    <div class="d-flex justify-content-between">
+                                        
+                                    </div>
+                                </div>
+                                <div class="pt-0 pt-md-4 card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                                <div>
+                                                    <span class="heading">{this.state.semesters.length}</span>
+                                                    <span class="description">Semestres</span>
+                                                </div>
+                                                <div>
+                                                    <span class="heading">{this.state.quests.length}</span>
+                                                    <span class="description">Missões</span>
+                                                </div>
+                                                <div>
+                                                    <span class="heading">{this.state.items.length}</span>
+                                                    <span class="description">Itens</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <h3>{this.state.name.firstName} {this.state.name.lastName}</h3>
+                                        <div class="h5 font-weight-300">
+                                            <i class="ni ni-paper-diploma mr-2"></i>{this.state.school}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-xl-1 col-xl-8">
+                            <div class="bg-secondary shadow card">
+                                <div class="bg-white border-0 card-header">
+                                    <div class="align-items-center row">
+                                        <div class="col-8">
+                                            <h3 class="mb-0">Editar Conta</h3>
+                                        </div>
+                                        <div class="text-right col-4">
+                                            <a type="submit" class="btn btn-primary btn-sm">Editar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <Form onSubmit={this.handleSubmit}>
+                                        <h6 class="heading-small text-muted mb-4">Informação do Usuário</h6>
+                                        <div class="pl-lg-4">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-username">Username</label>
+                                                        <input id="input-username" placeholder="Username" type="text" class="form-control-alternative form-control"
+                                                        onChange={this.handleUsernameChange} value={this.state.username}/  >
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-email">E-mail</label>
+                                                        <input id="input-email"  placeholder="jesse@example.com" type="email" class="form-control-alternative form-control"
+                                                        onChange={this.handleEmailChange}  value={this.state.email}/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-first-name">First name</label>
+                                                        <input id="input-first-name"  placeholder="First name" type="text" class="form-control-alternative form-control" 
+                                                        value={this.state.name.firstName} onChange={this.handleFirstNameChange}/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-last-name">Last name</label>
+                                                        <input id="input-last-name"  placeholder="Last name" type="text" class="form-control-alternative form-control" 
+                                                        onChange={this.handleLasttNameChange} value={this.state.name.lastName}/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-first-name">Senha</label>
+                                                        <input id="input-first-name"   type="password" class="form-control-alternative form-control" 
+                                                         onChange={this.handlePasswordChange} value={this.state.password}/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-first-name">Escola</label>
+                                                        <input id="input-first-name"  type="text" class="form-control-alternative form-control" 
+                                                        value={this.state.school} onChange={this.handleSchoolChange}/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </>
         );
     }
 
