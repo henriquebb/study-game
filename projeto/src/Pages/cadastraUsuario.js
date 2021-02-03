@@ -19,7 +19,7 @@ import {
     InputGroupText,
     InputGroup,
     Row,
-    Col, Button, Label
+    Col, Button, Label, Container
   } from "reactstrap";
 
 
@@ -204,10 +204,13 @@ class CadastraUsuario extends Component {
                         <Row>
                         
                         <Col></Col>
-                        <Col> <Button color="danger" block type="button"
+                        <Col>
+                       
+                         <a href="/" class="btn btn-danger btn-block" 
                         //onClick={this.handleBack}
                         >
-                            Voltar</Button> </Col>
+                            
+                            Voltar</a> </Col>
                         <Col></Col>
                         </Row>
                         </Form>
