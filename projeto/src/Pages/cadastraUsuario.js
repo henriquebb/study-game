@@ -10,8 +10,8 @@ import {isLoged, whosLoged2} from '../Services/authentication.js'
 
 import api from '../Services/api.js'
 
-async function editProfile(jsonPatch){
-    const response = await api.patch('/users/' + whosLoged2(), jsonPatch);
+async function cadastra(jsonPatch){
+    const response = await api.post('/users/', jsonPatch);
     return;    
 }
 
@@ -66,8 +66,7 @@ class CadastraUsuario extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        console.log(this.state);
-        editProfile(this.state).then(this.props.history.push('/perfil'));
+        cadastra(this.state).then(this.props.history.push('/'));
     }
 
     render(){
