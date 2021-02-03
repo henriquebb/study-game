@@ -11,7 +11,7 @@ import {isLoged, whosLoged2} from '../Services/authentication.js'
 import api from '../Services/api.js'
 
 async function registerSemester(semester){
-    const response = await api.post('/semesters/' + whosLoged2(), semester);
+    const response = await api.post('/semesters', semester);
     return response;
 }
 
@@ -36,7 +36,7 @@ class CadastraSemestre extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        registerSemester({title:this.state.nome,grade:0}).then(this.props.history.push('/aulas'));
+        //registerSemester({title:this.state.nome,grade:0, uID:whosLoged2()}).then(this.props.history.push('/aulas', {novoSemestre:this.state.nome}));
     }
 
     render(){

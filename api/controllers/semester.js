@@ -64,8 +64,7 @@ const getSemester = (req, res) => {
         if (err) {
             res.status(404).json();
         } else {
-            res.send(semester).json();
-            res.status(200).json();
+            res.status(200).json(semester);
         }
     });
 };

@@ -30,7 +30,14 @@ import {
     Modal, Table, Label
 } from "reactstrap";
 
-import {isLoged} from '../Services/authentication.js'
+import {isLoged, whosLoged2} from '../Services/authentication.js'
+
+import api from '../Services/api.js'
+
+async function getSemester(){
+  const response = await api.get('/semesters/' + whosLoged2());
+  return response.data;
+}
 
 class Aulas extends Component {
     state = {
@@ -55,10 +62,14 @@ class Aulas extends Component {
         if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
             //this.props.history.push('/');
         }
+
+        //getSemester().then(res => console.log(res));
+
         this.handleNameChange = this.handleNameChange.bind(this);
         this.selecionaSemestre = this.selecionaSemestre.bind(this);
         this.selecionaAula = this.selecionaAula.bind(this);
         this.deletaAula = this.deletaAula.bind(this);
+        this.handleSubmitSemestre = this.handleSubmitSemestre.bind(this);
 
     }
    
@@ -68,7 +79,10 @@ class Aulas extends Component {
 
     handleSubmitSemestre(event){
       //adicinar handle novo semestre
-     
+      event.preventDefault();
+      var sem = this.state.semestres;
+      sem.push({title:this.state.nome, grade:0, classes:[]});
+      this.setState({semestres:sem, formModal:false});
     }
     
 
