@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+import './Assets/plugins/nucleo/css/nucleo.css';
+//import "@fortawesome/fontawesome-free/css/all.min.css";
+import './Assets/css/argon-dashboard-react.css';
+
 
 ReactDOM.render(
   <React.StrictMode>
