@@ -9,11 +9,27 @@ import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icon
 import {isLoged, whosLoged2} from '../Services/authentication.js'
 
 import api from '../Services/api.js'
+import Sidebar from "../Componentes/Sidebar.js";
+
+import {
+    FormGroup,
+    Form,
+    Input,
+    InputGroupAddon,
+    InputGroupText,
+    InputGroup,
+    Row,
+    Col, Button, Label
+  } from "reactstrap";
+
 
 async function cadastra(jsonPatch){
     const response = await api.post('/users/', jsonPatch);
     return;    
 }
+
+
+
 
 class CadastraUsuario extends Component {
     constructor(props){
@@ -69,56 +85,136 @@ class CadastraUsuario extends Component {
         cadastra(this.state).then(this.props.history.push('/'));
     }
 
+    handleBack(event){
+        this.props.history.push('/');
+    }
+
     render(){
         return (
             <div className="pagina">
-                <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-                <div className="cabecalho"> {/* Começo do Cabeçalho */}
-                    <div className="menu1"> {/* Início Logo + Menu */}
-                    <IconContext.Provider
-                        value={{ color: 'black', height: '40%' }}
+                
+                <div className="main-content">
+                <Row>
+                        
+                        <Col md="5"></Col>
+                        <h1>Registre-se</h1>
+                        <Col> </Col>
+                        <Col></Col>
+                        </Row>
+                
+                    <Form onSubmit={this.handleSubmit}>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col md="6">
+                            <FormGroup>
+                                <Label>Nome de Usuário</Label>
+                                <Input
+                                onChange={this.handleUsernameChange}
+                                type="text"
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col md="6">
+                            <FormGroup>
+                                <Label>Senha</Label>
+                                <Input
+                                onChange={this.handlePasswordChange} 
+                                type="password"
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col md="6">
+                            <FormGroup>
+                                <Label>Nome</Label>
+                                <Input
+                                onChange={this.handleFirstNameChange}
+                                type="text"
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col md="6">
+                            <FormGroup>
+                            <Label>Sobrenome</Label>
+                                <Input
+                                onChange={this.handleLasttNameChange}
+                                type="text"
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col md="6">
+                            <FormGroup>
+                                <Label>E-mail</Label> 
+                                <Input
+                                onChange={this.handleEmailChange}
+                                type="email"
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                            </Col>
+                            <Col md="6">
+                            <FormGroup>
+                                <Label>Escola</Label> 
+                                <Input
+                                onChange={this.handleSchoolChange}
+                                type="text"
+                                />
+                            </FormGroup>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                        <Row>
+                        <Col></Col>
+                        
+                        <Col> <Button color="success" block type="submit">Cadastrar</Button> </Col>
+                        <Col></Col>
+                        </Row>
+                        
+                        <br></br>
+                        <Row>
+                        
+                        <Col></Col>
+                        <Col> <Button color="danger" block type="button"
+                        //onClick={this.handleBack}
                         >
-                    <img className="img-logo" src={logo}/>
-                    <VscAccount/>
-                    <a href="/perfil">Perfil</a>
-                    <VscEdit/>
-                    <a href="/aulas">Aulas</a>
-                    <VscCalendar/>
-                    <a href="/calendario">Calendário</a>
-                    <RiSwordLine/>
-                    <a href="/missoes">Missões</a>
-                    <RiShoppingBag2Line/>
-                    <a href="/loja">Loja</a>
-                    </IconContext.Provider>
-                </div> {/* Fim Logo + Menu */}
-                    <div className="header-right"> {/* Início Logout */}
-                        <RiLogoutCircleRLine/>
-                        <a href="/">Logout</a>
-                    </div> {/* Fim Logout */}
-                </div> {/* Fim do Cabeçalho */}
-
-                <div>
-                    <h4>Registre-se</h4>
-                    <form onSubmit={this.handleSubmit}>
-                    <label>
-                    Nome de Usuário (Login):
-                        <input type="text" onChange={this.handleUsernameChange}  /><br/>
-                        Senha:
-                        <input type="text" onChange={this.handlePasswordChange}  /><br/>
-                        Nome:
-                        <input type="text" onChange={this.handleFirstNameChange}  /><br/>
-                        Sobrenome:
-                        <input type="text" onChange={this.handleLasttNameChange}  /><br/>
-                        Email:
-                        <input type="text" onChange={this.handleEmailChange}  /><br/>
-                        Escola:
-                        <input type="text" onChange={this.handleSchoolChange}  /><br/>
-                        <input type="submit" value="Cadastrar" />
-                        </label>
-                    </form>
-                    
-                    
+                            Voltar</Button> </Col>
+                        <Col></Col>
+                        </Row>
+                        </Form>
+                
+                
                 </div>
+
             </div>
         );
     }
