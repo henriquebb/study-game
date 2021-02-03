@@ -4,12 +4,6 @@ import {login,isLoged, logout} from '../Services/authentication.js'
 
 import api from '../Services/api.js'
 
-async function isLoginIsValid(username, password){
-    const response = await api.post('/users/login', {username,password});
-    if(response.status == 200){return response.data;}
-    else {return "";}
-    
-}
 import {
     Button,
     Card,
@@ -27,7 +21,12 @@ import {
   } from "reactstrap";
 import { RiCpuFill } from 'react-icons/ri';
 
-
+async function isLoginIsValid(username, password){
+  const response = await api.post('/users/login', {username,password});
+  if(response.status == 200){return response.data;}
+  else {return "";}
+  
+}
 
 class Login extends Component {
     constructor(props){

@@ -35,6 +35,11 @@ async function editProfile(jsonPatch){
     return;    
 }
 
+async function getUserFromDB(uID){
+    const response = await api.get('/users/' + uID);
+    return response.data;
+}
+
 class EditarPerfil extends Component {
     constructor(props){
         super(props);
@@ -45,10 +50,18 @@ class EditarPerfil extends Component {
             email:props.history.location.state.email,
             name:props.history.location.state.name,
             school:props.history.location.state.school,
+            semesters:[],
+            quests:[],
+            items:[]
         }
         if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
             this.props.history.push('/');
         }
+
+        getUserFromDB(this.props.history.location.state.id).then(res => {
+            console.log(res);
+            this.setState(res);
+        })
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
