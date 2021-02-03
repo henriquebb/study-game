@@ -236,6 +236,12 @@ const Sidebar = (props) => {
                 Loja
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/">
+                <i className="ni ni-user-run text-info" />
+                Logout
+              </NavLink>
+            </NavItem>
           </Nav>
           
           <Nav className="mb-md-3" navbar>
