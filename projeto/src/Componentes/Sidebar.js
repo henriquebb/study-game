@@ -207,31 +207,31 @@ const Sidebar = (props) => {
           {/* Heading */}
           <Nav className="mb-md-3" navbar>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/overview?ref=adr-admin-sidebar">
+              <NavLink href="/perfil">
                 <i className="ni ni-circle-08 text-info" />
                 Perfil
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/colors?ref=adr-admin-sidebar">
+              <NavLink href="/aulas">
                 <i className="ni ni-books text-info" />
                 Aulas
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/alerts?ref=adr-admin-sidebar">
+              <NavLink href="/calendario">
                 <i className="ni ni-calendar-grid-58 text-info" />
                 Calendário
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/alerts?ref=adr-admin-sidebar">
+              <NavLink href="/missoes">
                 <i className="ni ni-trophy text-info" />
                 Missões
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://demos.creative-tim.com/argon-dashboard-react/#/documentation/alerts?ref=adr-admin-sidebar">
+              <NavLink href="/loja">
                 <i className="ni ni-shop text-info" />
                 Loja
               </NavLink>
@@ -240,7 +240,7 @@ const Sidebar = (props) => {
           
           <Nav className="mb-md-3" navbar>
             <NavItem className="active-pro active">
-              <NavLink href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adr-admin-sidebar">
+              <NavLink >
                 <i className="" />
                 Copyright
               </NavLink>
