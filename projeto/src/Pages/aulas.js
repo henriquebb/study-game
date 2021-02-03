@@ -27,7 +27,7 @@ import {
     InputGroupAddon,
     InputGroupText,
     InputGroup,
-    Modal, Table 
+    Modal, Table, Label
 } from "reactstrap";
 
 import {isLoged} from '../Services/authentication.js'
@@ -48,18 +48,30 @@ class Aulas extends Component {
             semestres:[{title:"2019/2", grade:0, classes:[{title:"Inglês Instrumental 1", grade:90, professor:"Tio Ronaldo", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}], class:"botao-semestre"},{title:"2020/1", grade:0, classes:[], class:"botao-semestre"},{title:"2020/2", grade:0, classes:[], class:"botao-semestre"},{title:"2021/1", grade:0, classes:[{title:"Inglês Instrumental 2", grade:10, professor:"Tio Ronaldo", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}, {title:"Libras", grade:20, professor:"Dona Clara", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}, {title:"Engenharia de Software", grade:0, professor:"Marco", startTime:{hour:14,minute:55},endTime:{hour:16,minute:35}, class:"botao-semestre"}], class:"botao-semestre"}],
             semestreSelecionado:-1,
             aulas:[],
-            aulaSelecionada:-1
+            aulaSelecionada:-1,
+            nome:""
         };
 
         if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
-            this.props.history.push('/');
+            //this.props.history.push('/');
         }
-
+        this.handleNameChange = this.handleNameChange.bind(this);
         this.selecionaSemestre = this.selecionaSemestre.bind(this);
         this.selecionaAula = this.selecionaAula.bind(this);
         this.deletaAula = this.deletaAula.bind(this);
 
     }
+   
+    handleNameChange(event){
+      this.setState({nome: event.target.value});
+    }
+
+    handleSubmitSemestre(event){
+      //adicinar handle novo semestre
+     
+    }
+    
+
 
     deletaSemestre(sID){
         const seme = this.state.semestres;
@@ -207,49 +219,25 @@ class Aulas extends Component {
         
                   <CardBody className="px-lg-5 py-lg-5">
                     <div className="text-center text-muted mb-4">
-                      <small>Or sign in with credentials</small>
+                      <h3>Novo Semestre</h3>
                     </div>
-                    <Form role="form">
+                    <Form role="form" onSubmit={this.handleSubmitSemestre}>
                       <FormGroup className="mb-3">
+                      <Label>Semestre</Label> 
                         <InputGroup className="input-group-alternative">
                           <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-email-83" />
-                            </InputGroupText>
                           </InputGroupAddon>
-                          <Input placeholder="Email" type="email" />
+                          <Input placeholder="2021/1" type="text" value={this.state.nome} onChange={this.handleNameChange} />
                         </InputGroup>
                       </FormGroup>
-                      <FormGroup>
-                        <InputGroup className="input-group-alternative">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-lock-circle-open" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input placeholder="Password" type="password" />
-                        </InputGroup>
-                      </FormGroup>
-                      <div className="custom-control custom-control-alternative custom-checkbox">
-                        <input
-                          className="custom-control-input"
-                          id=" customCheckLogin"
-                          type="checkbox"
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor=" customCheckLogin"
-                        >
-                          <span className="text-muted">Remember me</span>
-                        </label>
-                      </div>
+                  
                       <div className="text-center">
                         <Button
                           className="my-4"
                           color="primary"
-                          type="button"
+                          type="submit"
                         >
-                          Sign in
+                          Criar
                         </Button>
                       </div>
                     </Form>
@@ -261,7 +249,7 @@ class Aulas extends Component {
             </Card>
                 
                 
-                <Card body outline color="primary">
+              <Card body outline color="primary">
                 <CardBody>
                         {this.state.semestreSelecionado >= 0 && <h5>Semestre {this.state.semestres[this.state.semestreSelecionado].title} <BiEdit onClick={() => this.props.history.push('/edita-semestre', this.state.semestres[this.state.semestreSelecionado].title) }/></h5>}
                         {this.state.semestreSelecionado >= 0 && <h5>Nota Média: {this.state.semestres[this.state.semestreSelecionado].grade}</h5>}
@@ -322,7 +310,7 @@ class Aulas extends Component {
                         </tbody>
                         </Table>}
                 </CardBody>
-                </Card>
+              </Card>
 
                 <Card body outline color="primary">
                 <CardBody>
