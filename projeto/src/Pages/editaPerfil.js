@@ -69,7 +69,6 @@ class EditarPerfil extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        console.log(this.state);
         editProfile(this.state).then(this.props.history.push('/perfil'));
     }
 
