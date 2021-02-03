@@ -11,7 +11,7 @@ import {isLoged, whosLoged2} from '../Services/authentication.js'
 import api from '../Services/api.js'
 
 async function editProfile(jsonPatch){
-    const response = await api.post('/users/' + whosLoged2(), jsonPatch);
+    const response = await api.patch('/users/' + whosLoged2(), jsonPatch);
     return;    
 }
 
@@ -69,7 +69,8 @@ class EditarPerfil extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        editProfile(this.state).then();
+        console.log(this.state);
+        editProfile(this.state).then(this.props.history.push('/perfil'));
     }
 
     render(){
@@ -109,9 +110,9 @@ class EditarPerfil extends Component {
                         Senha:
                         <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}  /><br/>
                         Nome:
-                        <input type="text" defaultValue={this.state.name.firstName} onChange={this.handleNameChange}  /><br/>
+                        <input type="text" defaultValue={this.state.name.firstName} onChange={this.handleFirstNameChange}  /><br/>
                         Sobrenome:
-                        <input type="text" defaultValue={this.state.name.lastName} onChange={this.handleNameChange}  /><br/>
+                        <input type="text" defaultValue={this.state.name.lastName} onChange={this.handleLasttNameChange}  /><br/>
                         Email:
                         <input type="text" defaultValue={this.state.email} onChange={this.handleEmailChange}  /><br/>
                         Escola:
