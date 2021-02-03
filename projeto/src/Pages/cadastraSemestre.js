@@ -6,7 +6,14 @@ import { IconContext } from "react-icons";
 import { VscAccount, VscCalendar, VscEdit } from "react-icons/vsc";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
 
-import {isLoged} from '../Services/authentication.js'
+import {isLoged, whosLoged2} from '../Services/authentication.js'
+
+import api from '../Services/api.js'
+
+async function registerSemester(semester){
+    const response = await api.post('/semesters/' + whosLoged2(), semester);
+    return response;
+}
 
 class CadastraSemestre extends Component {
     constructor(props){
@@ -20,10 +27,16 @@ class CadastraSemestre extends Component {
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleNameChange(event){
         this.setState({nome: event.target.value});
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        registerSemester({title:this.state.nome,grade:0}).then(this.props.history.push('/aulas'));
     }
 
     render(){
