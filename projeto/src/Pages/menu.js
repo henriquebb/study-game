@@ -34,20 +34,20 @@ class Menu extends Component {
     }
     render(){
         return (
-    <>
+        <>
 
 
- 
-      <Sidebar
-        //{...props}
-        //routes={routes}
-        logo={{
-          innerLink: "/admin/index",
-          imgSrc: require("../Assets/logo.png").default,
-          imgAlt: "...",
-        }}
-      />
     
+        <Sidebar
+            //{...props}
+            //routes={routes}
+            logo={{
+            innerLink: "/admin/index",
+            imgSrc: require("../Assets/logo.png").default,
+            imgAlt: "...",
+            }}
+        />
+        
        <div className="main-content">
             <Container >
             <Row>
