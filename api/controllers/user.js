@@ -61,8 +61,7 @@ const getUser = (req, res) => {
         if (err) {
             res.status(404).json();
         } else {
-            res.send(user).json();
-            res.status(200).json();
+            res.status(200).json(user);
         }
     });
 };

@@ -6,7 +6,14 @@ import { IconContext } from "react-icons";
 import { VscAccount, VscCalendar, VscEdit } from "react-icons/vsc";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
 
-import {isLoged} from '../Services/authentication.js'
+import {isLoged, whosLoged2} from '../Services/authentication.js'
+
+import api from '../Services/api.js'
+
+async function editProfile(jsonPatch){
+    const response = await api.post('/users/' + whosLoged2(), jsonPatch);
+    return;    
+}
 
 class EditarPerfil extends Component {
     constructor(props){
@@ -14,15 +21,10 @@ class EditarPerfil extends Component {
         console.log();
         this.state={
             username:props.history.location.state.username,
-            novoUsername:props.history.location.state.username,
             password:props.history.location.state.password,
-            novoPassword:props.history.location.state.password,
             email:props.history.location.state.email,
-            novoEmail:props.history.location.state.email,
             name:props.history.location.state.name,
-            novoName:props.history.location.state.name,
             school:props.history.location.state.school,
-            novaSchool:props.history.location.state.school
         }
         if(isLoged() == false){ //Se não está logado e tentou entrar nessa página, redireciona pro login
             this.props.history.push('/');
@@ -34,34 +36,40 @@ class EditarPerfil extends Component {
         this.handleSchoolChange = this.handleSchoolChange.bind(this);
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
         this.handleLasttNameChange = this.handleLasttNameChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleUsernameChange(event){
-        this.setState({novoUsername: event.target.value});
+        this.setState({username: event.target.value});
     }
 
     handlePasswordChange(event){
-        this.setState({novoPassword: event.target.value});
+        this.setState({password: event.target.value});
     }
 
     handleEmailChange(event){
-        this.setState({novoEmail: event.target.value});
+        this.setState({email: event.target.value});
     }
 
     handleSchoolChange(event){
-        this.setState({novaSchool: event.target.value});
+        this.setState({school: event.target.value});
     }
 
     handleFirstNameChange(event){
-        var nFN = this.state.novoName;
+        var nFN = this.state.name;
         nFN.firstName = event.target.value;
-        this.setState({novoName: nFN});
+        this.setState({name: nFN});
     }
 
     handleLasttNameChange(event){
-        var nLN = this.state.novoName;
+        var nLN = this.state.name;
         nLN.lastName = event.target.value;
-        this.setState({novoName: nLN});
+        this.setState({name: nLN});
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        editProfile(this.state).then();
     }
 
     render(){
@@ -97,17 +105,17 @@ class EditarPerfil extends Component {
                     <form onSubmit={this.handleSubmit}>
                     <label>
                     Nome de Usuário (Login):
-                        <input type="text" value={this.state.novoUsername} onChange={this.handleUsernameChange}  /><br/>
+                        <input type="text" defaultValue={this.state.username} onChange={this.handleUsernameChange}  /><br/>
                         Senha:
-                        <input type="text" value={this.state.novoPassword} onChange={this.handlePasswordChange}  /><br/>
+                        <input type="text" defaultValue={this.state.password} onChange={this.handlePasswordChange}  /><br/>
                         Nome:
-                        <input type="text" value={this.state.novoName.firstName} onChange={this.handleNameChange}  /><br/>
+                        <input type="text" defaultValue={this.state.name.firstName} onChange={this.handleNameChange}  /><br/>
                         Sobrenome:
-                        <input type="text" value={this.state.novoName.lastName} onChange={this.handleNameChange}  /><br/>
+                        <input type="text" defaultValue={this.state.name.lastName} onChange={this.handleNameChange}  /><br/>
                         Email:
-                        <input type="text" value={this.state.novoEmail} onChange={this.handleEmailChange}  /><br/>
+                        <input type="text" defaultValue={this.state.email} onChange={this.handleEmailChange}  /><br/>
                         Escola:
-                        <input type="text" value={this.state.novaSchool} onChange={this.handleSchoolChange}  /><br/>
+                        <input type="text" defaultValue={this.state.school} onChange={this.handleSchoolChange}  /><br/>
                         <input type="submit" value="Salvar" />
                         </label>
                     </form>

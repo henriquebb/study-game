@@ -6,15 +6,21 @@ import React, {Component} from 'react';
 import { IconContext } from "react-icons";
 import { VscAccount, VscCalendar, VscEdit } from "react-icons/vsc";
 import { RiShoppingBag2Line, RiSwordLine, RiLogoutCircleRLine } from "react-icons/ri";
-
 import Button from 'react-bootstrap/Button';
 
-import {isLoged} from '../Services/authentication.js'
+import {isLoged, whosLoged2} from '../Services/authentication.js'
+import api from '../Services/api.js'
+
+async function getUserFromDB(uID){
+    const response = await api.get('/users/' + uID);
+    return response.data;
+}
 
 class Perfil extends Component {
     constructor(props){
         super(props);
         this.state={
+            id: whosLoged2(),
             username:"Nickname",
             password:"123456",
             email:"exemplo@teste.com",
@@ -31,6 +37,9 @@ class Perfil extends Component {
         }
 
         this.handleEditaPerfil = this.handleEditaPerfil.bind(this);
+        getUserFromDB(this.state.id).then(res => {
+            this.setState(res)
+        })
     }
 
     handleEditaPerfil(){

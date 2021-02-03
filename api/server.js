@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import express from "express";
+import cors from "cors";
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
 import bodyParser from 'body-parser';
@@ -8,6 +9,8 @@ dotenv.config();
 const server = express();
 
 server.use(bodyParser.json());
+server.use(cors({ origin: true }));
+
 
 mongoose.connect(`mongodb://${process.env.DIR}/study-game`, 
 {
