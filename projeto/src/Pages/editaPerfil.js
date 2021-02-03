@@ -95,19 +95,6 @@ class EditarPerfil extends Component {
     render(){
         return (
             <>
-            <div className="pagina">
-                <div>
-                    <h4>Editar Perfil</h4>
-                    <form onSubmit={this.handleSubmit}>
-                    <label>
-    
-                        <input type="submit" value="Salvar" />
-                        </label>
-                    </form>
-                    
-                    
-                </div>
-            </div>
             <Sidebar
             logo={{
               imgSrc: require("../Assets/logo.png").default,
@@ -177,18 +164,19 @@ class EditarPerfil extends Component {
                         </div>
                         <div class="order-xl-1 col-xl-8">
                             <div class="bg-secondary shadow card">
-                                <div class="bg-white border-0 card-header">
+                            <Form onSubmit={this.handleSubmit}>
+                            <div class="bg-white border-0 card-header">
                                     <div class="align-items-center row">
                                         <div class="col-8">
                                             <h3 class="mb-0">Editar Conta</h3>
                                         </div>
                                         <div class="text-right col-4">
-                                            <a type="submit" class="btn btn-primary btn-sm">Editar</a>
+                                            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <Form onSubmit={this.handleSubmit}>
+                                   
                                         <h6 class="heading-small text-muted mb-4">Informação do Usuário</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
@@ -240,32 +228,16 @@ class EditarPerfil extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </Form>
+                                   
                                 </div>
+                                </Form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </>
+    </>
         );
     }
 
